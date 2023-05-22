@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useAppSelector, useAppDispatch } from '../hooks';
+import Search from './Search';
+import List from './List';
 
 const App = (): React.JSX.Element => {
-  const movie = useAppSelector(state => state.movies)
-  useAppDispatch();
-  console.log('movie', movie)
+  // const movie = useAppSelector(state => state.movies)
+  // useAppDispatch();
+  // console.log('movie', movie)
   return (
-    <div>Hello World</div>
+    <div>
+      <Search/>
+      <List/>
+    </div>
   )
 }
 
