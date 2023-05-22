@@ -1,5 +1,5 @@
 import React from 'react';
-import { Movie } from '../reducer' // issue assigning type alias to param
+import { Movie } from '../reducer'; // issue assigning type alias to param
 import { useAppSelector, useAppDispatch } from '../hooks';
 
 interface MovieEntry {

@@ -13,8 +13,11 @@ const Search = (): React.JSX.Element => {
         temp.push(movie);
       }
     })
-    dispatch(updateFilter(temp));
+    dispatch(updateFilter(temp))
+    dispatch(updateQuery(''));
   }
+
+  // async (): Promise<void>
 
   return (
     <div>

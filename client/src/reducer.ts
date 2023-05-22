@@ -11,7 +11,9 @@ interface MovieStates {
 }
 
 interface AllStates extends MovieStates {
-  query: string | ''
+  query: string | '';
+  add: string;
+  watched: 0 | 1;
 }
 
 const initialState: AllStates = {
@@ -29,7 +31,9 @@ const initialState: AllStates = {
     {title: 'Sunshine', watched: 0},
     {title: 'Ex Machina', watched: 0},
   ],
-  query: ''
+  query: '',
+  add: '',
+  watched: 1 /* 0 false, 1 true -- default to movies that have not been watched */
 }
 
 export const movieSlice = createSlice({
@@ -44,9 +48,12 @@ export const movieSlice = createSlice({
     },
     updateQuery: (state, action) => {
       state.query = action.payload;
+    },
+    updateAdd: (state, action) => {
+      state.add = action.payload;
     }
   },
 });
 
-export const { updateMovies, updateFilter, updateQuery } = movieSlice.actions;
+export const { updateMovies, updateFilter, updateQuery, updateAdd } = movieSlice.actions;
 export default movieSlice.reducer;
