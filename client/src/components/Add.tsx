@@ -8,8 +8,6 @@ const Add = (): React.JSX.Element => {
   const dispatch = useAppDispatch();
 
   const handleAdd = (): void => {
-    console.log('this is added value', add)
-    // add new movie to filtered state, with a default value of 0 for watched
     let newMovie: Movie = {title: add, watched: 0};
     dispatch(updateMovies([newMovie, ...movies]))
     dispatch(updateFilter([newMovie, ...movies]))

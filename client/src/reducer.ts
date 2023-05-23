@@ -1,22 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+type DeepWriteable<T> = { -readonly [P in keyof T]: T[P] };
+
 export interface Movie {
   title: string,
   watched: 0 | 1
 }
 
-interface MovieStates {
-  movies: Array<Movie>,
-  filtered: any[],
-}
-
-interface AllStates extends MovieStates {
-  query: string | '';
+const initialState: {
+  movies: DeepWriteable<Movie>[];
+  filtered: DeepWriteable<Movie>[];
+  query: string;
   add: string;
   watched: 0 | 1;
-}
-
-const initialState: AllStates = {
+} = {
   movies: [
     {title: 'Mean Girls', watched: 0},
     {title: 'Hackers', watched: 0},
@@ -51,9 +48,12 @@ export const movieSlice = createSlice({
     },
     updateAdd: (state, action) => {
       state.add = action.payload;
+    },
+    updateWatched: (state, action) => {
+      state.watched = action.payload;
     }
   },
 });
 
-export const { updateMovies, updateFilter, updateQuery, updateAdd } = movieSlice.actions;
+export const { updateMovies, updateFilter, updateQuery, updateAdd, updateWatched } = movieSlice.actions;
 export default movieSlice.reducer;
