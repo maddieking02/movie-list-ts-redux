@@ -10,15 +10,20 @@ const Entry = ({ entry }: MovieEntry): React.JSX.Element => {
   const { movies } = useAppSelector(state => state.movies)
   const dispatch = useAppDispatch();
 
-  const handleToggle = (e): void => {
-    let copy = [...movies];
-    copy.map(movieCopy => {
-      if (movieCopy.title.toLowerCase() === entry.title.toLowerCase()) {
-        movieCopy.watched === 0 ? movieCopy.watched = 1 : movieCopy.watched = 0;
+  const handleToggle = (): void => {
+    let copy = movies.map(movie => {
+      if (movie.title.toLowerCase() === entry.title.toLowerCase()) {
+        return {
+          ...movie,
+          watched: movie.watched === 0 ? 1 : 0
+        };
       }
-    })
+      return movie;
+    });
     dispatch(updateMovies(copy));
+    dispatch(updateFilter(copy));
   };
+
 
   return (
     <div>
